@@ -13,4 +13,8 @@ export class UserService {
   async createUser(user: User): Promise<void> {
     return this.userRepository.createUser(user);
   }
+
+  async updateUser(user: User): Promise<User | null> {
+    return this.userRepository.updateUser(user);
+  }
 }

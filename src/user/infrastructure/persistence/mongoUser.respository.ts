@@ -14,6 +14,15 @@ export class MongoUserRepository extends UserRepository {
     await this.userModel.create(user);
   }
 
+  async updateUser(user: User): Promise<User | null> {
+    const updatedUser = await this.userModel
+      .findByIdAndUpdate(user.id, user, {
+        new: true,
+      })
+      .exec();
+    return updatedUser;
+  }
+
   async findUserById(id: string): Promise<User | null> {
     return this.userModel.findById(id).exec();
   }
