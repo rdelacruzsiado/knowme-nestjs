@@ -8,7 +8,10 @@ export class UserDocument extends Document implements User {
   id: string;
 
   @Prop()
-  username: string;
+  name: string;
+
+  @Prop()
+  lastName: string;
 
   @Prop()
   email: string;
