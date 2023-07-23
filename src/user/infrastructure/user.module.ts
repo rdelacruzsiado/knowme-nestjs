@@ -13,5 +13,6 @@ import { UserSchema } from './persistence/mongoUser.schema';
     UserService,
     { provide: UserRepository, useClass: MongoUserRepository },
   ],
+  exports: [UserService],
 })
 export class UserModule {}

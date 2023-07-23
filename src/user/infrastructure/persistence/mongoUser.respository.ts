@@ -29,6 +29,10 @@ export class MongoUserRepository extends UserRepository {
     return this.userModel.findById(id).exec();
   }
 
+  async findUserByEmail(email: string): Promise<User | null> {
+    return this.userModel.findOne({ email }).exec();
+  }
+
   async findAllUsers(): Promise<User[]> {
     return this.userModel.find().exec();
   }
