@@ -6,13 +6,17 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiParam, ApiBody } from '@nestjs/swagger';
+import { AuthGuard } from '@nestjs/passport';
+
 import { PublicationService } from '../domain/publication.service';
 import { Publication } from '../domain/publication.entity';
 import { CreatePublicationDto } from './dto/createPublication.dto';
 import { UpdatePublicationDto } from './dto/updatePublication.dto';
 
+@UseGuards(AuthGuard('jwt'))
 @ApiTags('Publicaciones')
 @Controller('publications')
 export class PublicationController {
