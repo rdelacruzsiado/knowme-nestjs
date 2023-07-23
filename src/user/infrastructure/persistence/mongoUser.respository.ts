@@ -18,7 +18,7 @@ export class MongoUserRepository extends UserRepository {
 
   async updateUser(user: User): Promise<User | null> {
     const updatedUser = await this.userModel
-      .findByIdAndUpdate(user.id, user, {
+      .findByIdAndUpdate(user._id, user, {
         new: true,
       })
       .exec();

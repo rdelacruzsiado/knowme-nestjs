@@ -1,10 +1,21 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  UseGuards,
+} from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiParam, ApiBody } from '@nestjs/swagger';
+import { AuthGuard } from '@nestjs/passport';
+
 import { UserService } from '../domain/user.service';
 import { User } from '../domain/user.entity';
 import { CreateUserDto } from './dto/createUser.dto';
 import { UpdateUserDto } from './dto/updateUser.dto';
 
+@UseGuards(AuthGuard('jwt'))
 @ApiTags('Usuarios')
 @Controller('users')
 export class UserController {
@@ -31,6 +42,6 @@ export class UserController {
     @Param('id') userId: string,
     @Body() user: User,
   ): Promise<User | null> {
-    return this.userService.updateUser({ ...user, id: userId });
+    return this.userService.updateUser({ ...user, _id: userId });
   }
 }

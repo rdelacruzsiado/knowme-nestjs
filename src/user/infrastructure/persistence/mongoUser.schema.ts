@@ -5,7 +5,7 @@ import { User } from '../../domain/user.entity';
 @Schema()
 export class UserDocument extends Document implements User {
   @Prop()
-  id: string;
+  _id: string;
 
   @Prop()
   name: string;
