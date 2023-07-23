@@ -42,6 +42,6 @@ export class UserController {
     @Param('id') userId: string,
     @Body() user: User,
   ): Promise<User | null> {
-    return this.userService.updateUser({ ...user, _id: userId });
+    return this.userService.updateUser(userId, user);
   }
 }
