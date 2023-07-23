@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import * as bcrypt from 'bcrypt';
 import { User } from '../../domain/user.entity';
 import { UserRepository } from '../../domain/user.repository';
 
@@ -11,7 +12,8 @@ export class MongoUserRepository extends UserRepository {
   }
 
   async createUser(user: User): Promise<void> {
-    await this.userModel.create(user);
+    const hashPassword = await bcrypt.hash(user.password, 10);
+    await this.userModel.create({ ...user, password: hashPassword });
   }
 
   async updateUser(user: User): Promise<User | null> {
