@@ -6,6 +6,7 @@ import { UserModule } from './user/infrastructure/user.module';
 import { PublicationModule } from './publication/infraestructure/publication.module';
 import { AuthModule } from './auth/auth.module';
 import { CommentModule } from './comment/infraestructure/comment.module';
+import { MailModule } from './mail/mail.module';
 import config from './config';
 
 @Module({
@@ -20,6 +21,7 @@ import config from './config';
     PublicationModule,
     AuthModule,
     CommentModule,
+    MailModule,
   ],
 })
 export class AppModule {}

@@ -1,14 +1,21 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+
 import { Comment } from 'src/comment/domain/comment.entity';
 import { CommentRepository } from 'src/comment/domain/comment.repository';
+import { MailService } from 'src/mail/mail.service';
+import { PublicationService } from 'src/publication/domain/publication.service';
+import { UserService } from 'src/user/domain/user.service';
 
 @Injectable()
 export class MongoCommentRepository extends CommentRepository {
   constructor(
     @InjectModel('Comment')
     private readonly commentModel: Model<Comment>,
+    private mailService: MailService,
+    private userService: UserService,
+    private publicationService: PublicationService,
   ) {
     super();
   }
@@ -24,6 +31,11 @@ export class MongoCommentRepository extends CommentRepository {
   }
 
   async createComment(comment: Comment): Promise<void> {
+    const publication = await this.publicationService.findPublicationById(
+      comment.publicationId,
+    );
+    const user = await this.userService.findUserById(publication.userId);
+    await this.mailService.sendUserNotification(user);
     await this.commentModel.create(comment);
   }
 
