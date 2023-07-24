@@ -30,7 +30,7 @@ export class UserController {
   @Post()
   @ApiOperation({ summary: 'Crear un nuevo usuario' })
   @ApiBody({ type: CreateUserDto })
-  async createUser(@Body() user: User): Promise<void> {
+  async createUser(@Body() user: CreateUserDto): Promise<void> {
     return this.userService.createUser(user);
   }
 
@@ -40,7 +40,7 @@ export class UserController {
   @ApiBody({ type: UpdateUserDto })
   async updateUser(
     @Param('id') userId: string,
-    @Body() user: User,
+    @Body() user: UpdateUserDto,
   ): Promise<User | null> {
     return this.userService.updateUser(userId, user);
   }

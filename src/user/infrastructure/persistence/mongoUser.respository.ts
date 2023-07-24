@@ -16,7 +16,7 @@ export class MongoUserRepository extends UserRepository {
     await this.userModel.create({ ...user, password: hashPassword });
   }
 
-  async updateUser(userId: string, user: User): Promise<User | null> {
+  async updateUser(userId: string, user: Partial<User>): Promise<User | null> {
     const updatedUser = await this.userModel
       .findByIdAndUpdate(userId, user, {
         new: true,
