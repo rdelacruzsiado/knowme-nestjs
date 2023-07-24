@@ -23,6 +23,7 @@ import { Comment } from '../domain/comment.entity';
 import { UpdateCommentDto } from './dto/updateComment.dto';
 import { CreateCommentDto } from './dto/createComment.dto';
 import { Request } from 'express';
+import { CreateResponseDto } from './dto/createResponse.dto';
 
 @ApiTags('comments')
 @Controller('comments')
@@ -56,6 +57,23 @@ export class CommentController {
   ): Promise<void> {
     comment.userId = req.user['sub'];
     return this.commentService.createComment(comment);
+  }
+
+  @Post(':parentId')
+  @ApiOperation({ summary: 'Crear un respuesta a un comentario' })
+  @ApiParam({ name: 'parentId', description: 'ID del comentario padre' })
+  @ApiBody({ type: CreateResponseDto })
+  @ApiResponse({
+    status: 201,
+    description: 'Respuesta creada exitosamente',
+  })
+  async createNestedComment(
+    @Req() req: Request,
+    @Param('parentId') parentId: string,
+    @Body() comment: CreateResponseDto,
+  ): Promise<void> {
+    comment.userId = req.user['sub'];
+    return this.commentService.createNestedComment(parentId, comment);
   }
 
   @Put(':commentId')

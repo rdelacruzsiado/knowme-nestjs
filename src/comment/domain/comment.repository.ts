@@ -6,6 +6,10 @@ export abstract class CommentRepository {
     publicationId: string,
   ): Promise<Comment[]>;
   abstract createComment(comment: Comment): Promise<void>;
+  abstract createNestedComment(
+    parentId: string,
+    comment: Comment,
+  ): Promise<void>;
   abstract updateComment(
     commentId: string,
     comment: Partial<Comment>,

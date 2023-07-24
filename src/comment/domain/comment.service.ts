@@ -16,6 +16,10 @@ export class CommentService {
     return this.commentRepository.createComment(comment);
   }
 
+  async createNestedComment(parentId: string, comment: Comment): Promise<void> {
+    return this.commentRepository.createNestedComment(parentId, comment);
+  }
+
   async updateComment(
     commentId: string,
     comment: Partial<Comment>,

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Comment } from 'src/comment/domain/comment.entity';
@@ -41,5 +41,15 @@ export class MongoCommentRepository extends CommentRepository {
 
   async deleteComment(id: string): Promise<void> {
     await this.commentModel.deleteOne({ _id: id });
+  }
+
+  async createNestedComment(parentId: string, comment: Comment): Promise<void> {
+    const parentComment = await this.findCommentById(parentId);
+
+    if (!parentComment) {
+      throw new NotFoundException('Parent comment not found');
+    }
+    comment.parentId = parentId;
+    await this.createComment(comment);
   }
 }

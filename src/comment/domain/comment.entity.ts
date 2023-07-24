@@ -2,6 +2,7 @@ export interface Comment {
   id?: string;
   content: string;
   createDate: Date;
-  publicationId: string;
+  publicationId?: string;
   userId: string;
+  parentId?: string;
 }
