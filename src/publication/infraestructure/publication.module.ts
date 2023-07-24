@@ -17,5 +17,6 @@ import { MongoPublicationRepository } from './persistence/mongoPublication.respo
     PublicationService,
     { provide: PublicationRepository, useClass: MongoPublicationRepository },
   ],
+  exports: [PublicationService],
 })
 export class PublicationModule {}
