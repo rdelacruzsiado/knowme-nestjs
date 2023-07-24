@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Publication } from './publication.entity';
 import { PublicationRepository } from './publication.repository';
+import { CreatePublicationDto } from '../infraestructure/dto/createPublication.dto';
 
 @Injectable()
 export class PublicationService {
@@ -10,7 +11,7 @@ export class PublicationService {
     return this.publicationRepository.findAllPublicationsByUser(userId);
   }
 
-  async createPublication(publication: Publication): Promise<void> {
+  async createPublication(publication: CreatePublicationDto): Promise<void> {
     return this.publicationRepository.createPublication(publication);
   }
 

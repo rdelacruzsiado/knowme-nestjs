@@ -37,7 +37,9 @@ export class PublicationController {
   @Post()
   @ApiOperation({ summary: 'Crear una nueva publicación' })
   @ApiBody({ type: CreatePublicationDto })
-  async createPublication(@Body() publication: Publication): Promise<void> {
+  async createPublication(
+    @Body() publication: CreatePublicationDto,
+  ): Promise<void> {
     return this.publicationService.createPublication(publication);
   }
 
