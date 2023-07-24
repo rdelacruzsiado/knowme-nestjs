@@ -18,7 +18,7 @@ export class CommentService {
 
   async updateComment(
     commentId: string,
-    comment: Comment,
+    comment: Partial<Comment>,
   ): Promise<Comment | null> {
     return this.commentRepository.updateComment(commentId, comment);
   }

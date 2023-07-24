@@ -68,7 +68,7 @@ export class CommentController {
   })
   async updateComment(
     @Param('commentId') commentId: string,
-    @Body() comment: Comment,
+    @Body() comment: UpdateCommentDto,
   ): Promise<Comment | null> {
     return this.commentService.updateComment(commentId, comment);
   }

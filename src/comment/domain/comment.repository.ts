@@ -8,7 +8,7 @@ export abstract class CommentRepository {
   abstract createComment(comment: Comment): Promise<void>;
   abstract updateComment(
     commentId: string,
-    comment: Comment,
+    comment: Partial<Comment>,
   ): Promise<Comment | null>;
   abstract deleteComment(id: string): Promise<void>;
 }
