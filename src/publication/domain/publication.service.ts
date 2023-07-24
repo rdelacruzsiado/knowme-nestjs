@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Publication } from './publication.entity';
 import { PublicationRepository } from './publication.repository';
 import { CreatePublicationDto } from '../infraestructure/dto/createPublication.dto';
+import { UpdatePublicationDto } from '../infraestructure/dto/updatePublication.dto';
 
 @Injectable()
 export class PublicationService {
@@ -17,7 +18,7 @@ export class PublicationService {
 
   async updatePublication(
     publicationId: string,
-    publication: Publication,
+    publication: UpdatePublicationDto,
   ): Promise<Publication | null> {
     return this.publicationRepository.updatePublication(
       publicationId,

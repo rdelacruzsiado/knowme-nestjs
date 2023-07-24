@@ -49,7 +49,7 @@ export class PublicationController {
   @ApiBody({ type: UpdatePublicationDto })
   async updatePublication(
     @Param('id') id: string,
-    @Body() publication: Publication,
+    @Body() publication: UpdatePublicationDto,
   ): Promise<Publication | null> {
     return this.publicationService.updatePublication(id, publication);
   }

@@ -18,7 +18,7 @@ async function bootstrap() {
   SwaggerModule.setup('docs', app, document);
 
   app.use(cookieParser());
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
 
   await app.listen(3000);
 }

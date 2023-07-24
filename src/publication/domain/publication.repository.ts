@@ -1,4 +1,5 @@
 import { CreatePublicationDto } from '../infraestructure/dto/createPublication.dto';
+import { UpdatePublicationDto } from '../infraestructure/dto/updatePublication.dto';
 import { Publication } from './publication.entity';
 
 export abstract class PublicationRepository {
@@ -7,7 +8,7 @@ export abstract class PublicationRepository {
   abstract createPublication(publication: CreatePublicationDto): Promise<void>;
   abstract updatePublication(
     publicationId: string,
-    publication: Publication,
+    publication: UpdatePublicationDto,
   ): Promise<Publication | null>;
   abstract deletePublication(id: string): Promise<void>;
 }
