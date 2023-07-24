@@ -6,6 +6,12 @@ import { PublicationRepository } from './publication.repository';
 export class PublicationService {
   constructor(private readonly publicationRepository: PublicationRepository) {}
 
+  async findPublicationById(
+    publicationId: string,
+  ): Promise<Publication | null> {
+    return this.publicationRepository.findPublicationById(publicationId);
+  }
+
   async findAllPublicationsByUser(userId: string): Promise<Publication[]> {
     return this.publicationRepository.findAllPublicationsByUser(userId);
   }
