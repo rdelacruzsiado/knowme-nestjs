@@ -11,7 +11,7 @@ import config from './config';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/knowme_db'),
+    MongooseModule.forRoot('mongodb://mongodb:27017/knowme_db'),
     ConfigModule.forRoot({
       envFilePath: `.env`,
       load: [config],
